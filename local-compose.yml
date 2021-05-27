@@ -1,0 +1,52 @@
+version: '2.3'
+
+services:
+  web:
+    environment:
+      - JANUS_HTTP_URI=http://10.10.10.109/janus/http
+      - JANUS_HTTPS_URI=https://10.10.10.109/janus/http
+      - JANUS_WS_URI=ws://10.10.10.109/janus/ws
+      - JANUS_WSS_URI=wss://10.10.10.109/janus/ws
+    logging:
+      driver: json-file
+  home:
+    logging:
+      driver: json-file
+  mongodb:
+    logging:
+      driver: json-file
+
+  janus:
+    build:
+      context: ./janus
+    logging:
+      driver: json-file
+    environment:
+      - JANUS_TOKEN_SECRET=janus
+      - RABBIT_HOST=localhost
+      - ENABLE_EVENTS=false
+      - ENABLE_RABBIT_EVENTS=false
+      - DEBUG_COLORS=true
+      - SERVER_NAME=janus
+    ports:
+      - "8088:8088"
+      - "8188:8188"
+      - "7888:7888"
+    privileged: true
+    volumes:
+      - ./core:/core
+      - ./januscore:/opt/bin/janus/core
+      - ./valgrind:/tmp/valgrind
+    ulimits:
+      core:
+        hard: 99999999999
+        soft: 99999999999
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "8080:15672"
+  haproxy:
+    build: ./haproxy
+    ports:
+      - "8888:80"

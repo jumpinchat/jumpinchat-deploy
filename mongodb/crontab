@@ -1,0 +1,5 @@
+SHELL=/bin/sh
+PATH=/opt/someApp/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+0 0 * * * root /bin/bash /root/backup.sh >> /var/log/cron.log 2>&1
+
