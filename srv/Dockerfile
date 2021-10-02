@@ -23,12 +23,9 @@ RUN apt-get install -yqq --no-install-recommends \
         sudo \
         python3-pip \
         python3-wheel \
-        build-essential
-
-# install aws cli
-RUN pip3 install setuptools --upgrade
-RUN pip3 install wheel
-RUN pip3 install awscli --upgrade
+        build-essential \
+        jq \
+        unzip
 
 # install node dependencies
 RUN mkdir -p /tmp/scripts

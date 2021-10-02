@@ -11,19 +11,19 @@ services:
       - JANUS_WS_URI=/janus/ws
       - JANUS_WSS_URI=/janus/ws
       - JANUS_CODEC=vp8
-      - JANUS_TOKEN_SECRET=
+      - JANUS_TOKEN_SECRET=$JANUS_TOKEN_SECRET
       - JANUS_SERVER_IDS=janus,janus2
       - JANUS_PLUGINS=janus.plugin.videoroom
-      - YT_API_KEY=
-      - AWS_SES_ACCESS_KEY=
-      - AWS_SES_SECRET=
-      - AWS_S3_UPLOADS_ACCESS_KEY=
-      - AWS_S3_UPLOADS_SECRET=
+      - YT_API_KEY=$YT_API_KEY
+      - AWS_SES_ACCESS_KEY=$AWS_SES_ACCESS_KEY
+      - AWS_SES_SECRET=$AWS_SES_SECRET
+      - AWS_S3_UPLOADS_ACCESS_KEY=$AWS_S3_UPLOADS_ACCESS_KEY
+      - AWS_S3_UPLOADS_SECRET=$AWS_S3_UPLOADS_SECRET
       - AWS_S3_UPLOADS_BUCKET=jic-uploads
       - TURN_URIS=turn.example.com
-      - GCM_API_KEY="" # key for push notifications
-      - STRIPE_SK=
-      - STRIPE_WH_KEY=
+      - GCM_API_KEY=$GCM_API_KEY # key for push notifications
+      - STRIPE_SK=$STRIPE_SK
+      - STRIPE_WH_KEY=$STRIPE_WH_KEY
       - MONGODB_URI=mongodb://mongodb,mongodbslave/tc?replicaSet=rs0
     expose:
       - "80"
@@ -46,19 +46,19 @@ services:
       - JANUS_WS_URI=/janus/ws
       - JANUS_WSS_URI=/janus/ws
       - JANUS_CODEC=vp8
-      - JANUS_TOKEN_SECRET=
+      - JANUS_TOKEN_SECRET=$JANUS_TOKEN_SECRET
       - JANUS_SERVER_IDS=janus,janus2
       - JANUS_PLUGINS=janus.plugin.videoroom
-      - YT_API_KEY=
-      - AWS_SES_ACCESS_KEY=
-      - AWS_SES_SECRET=
-      - AWS_S3_UPLOADS_ACCESS_KEY=
-      - AWS_S3_UPLOADS_SECRET=
+      - YT_API_KEY=$YT_API_KEY
+      - AWS_SES_ACCESS_KEY=$AWS_SES_ACCESS_KEY
+      - AWS_SES_SECRET=$AWS_SES_SECRET
+      - AWS_S3_UPLOADS_ACCESS_KEY=$AWS_S3_UPLOADS_ACCESS_KEY
+      - AWS_S3_UPLOADS_SECRET=$AWS_S3_UPLOADS_SECRET
       - AWS_S3_UPLOADS_BUCKET=jic-uploads
       - TURN_URIS=turn.example.com
-      - GCM_API_KEY="" # key for push notifications
-      - STRIPE_SK=
-      - STRIPE_WH_KEY=
+      - GCM_API_KEY=$GCM_API_KEY # key for push notifications
+      - STRIPE_SK=$STRIPE_SK
+      - STRIPE_WH_KEY=$STRIPE_WH_KEY
       - MONGODB_URI=mongodb://mongodb,mongodbslave/tc?replicaSet=rs0
     expose:
       - "80"
@@ -78,7 +78,7 @@ services:
     image: registry.example.com/user/home
     environment:
       - DEPLOY_LOCATION=local
-      - STRIPE_KEY_PUBLIC=
+      - STRIPE_KEY_PUBLIC=$STRIPE_KEY_PUBLIC
       - MONGODB_URI=mongodb://mongodb,mongodbslave/tc?replicaSet=rs0
     ports:
       - "3000:3000"
@@ -93,7 +93,7 @@ services:
     image: registry.example.com/user/home
     environment:
       - DEPLOY_LOCATION=local
-      - STRIPE_KEY_PUBLIC=
+      - STRIPE_KEY_PUBLIC=$STRIPE_KEY_PUBLIC
       - MONGODB_URI=mongodb://mongodb,mongodbslave/tc?replicaSet=rs0
     expose:
       - "3000"
@@ -173,7 +173,7 @@ services:
       - SERVER_NAME=janus
       - ENABLE_EVENTS=true
       - ENABLE_RABBIT_EVENTS=false
-      - JANUS_TOKEN_SECRET=somesecret
+      - JANUS_TOKEN_SECRET=$JANUS_TOKEN_SECRET
     logging:
       options:
         max-size: '1m'
@@ -192,7 +192,7 @@ services:
       - SERVER_NAME=janus2
       - ENABLE_EVENTS=true
       - ENABLE_RABBIT_EVENTS=false
-      - JANUS_TOKEN_SECRET=somesecret
+      - JANUS_TOKEN_SECRET=$JANUS_TOKEN_SECRET
     logging:
       options:
         max-size: '1m'
@@ -214,9 +214,9 @@ services:
     expose:
       - "3001"
     environment:
-      - AWS_SES_ACCESS_KEY=
-      - AWS_SES_SECRET=
-      - SHARED_SECRET=secret
+      - AWS_SES_ACCESS_KEY=$AWS_SES_ACCESS_KEY
+      - AWS_SES_SECRET=$AWS_SES_SECRET
+      - SHARED_SECRET=$SHARED_SECRET
     logging:
       options:
         max-size: '1m'

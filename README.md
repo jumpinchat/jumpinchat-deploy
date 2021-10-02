@@ -25,10 +25,10 @@ Also required is [jumpinchat/jumpinchat-emails](https://github.com/jumpinchat/ju
 
 ### Run all services
 
-You will need to update the compose file with the appropriate secrets
+You will need to update a .env file with the appropriate secrets
 
 ```shell
-  docker-compose up
+  docker-compose --env-file ./example.env up
 ```
 
 Since MongoDB replication is used, you'll have to set that up by running `./initMongoRepl.sh`
@@ -41,6 +41,12 @@ Since I used a privately hosted docker registry, you will have to update the ima
   # e.g.
   web:
     image: registry.example.com/<user>/web
+```
+
+buld the image
+
+```shell
+  docker-compose build web
 ```
 
 then push them
