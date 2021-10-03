@@ -15,13 +15,9 @@ RUN apt-get install -y \
         sudo \
         python \
         python-dev \
-        build-essential
-
-# install pip, in order to download aws cli
-RUN curl -sL https://bootstrap.pypa.io/get-pip.py | python
-
-# install aws cli
-RUN pip install awscli
+        build-essential \
+        jq \
+        unzip
 
 # install node dependencies
 RUN mkdir -p /tmp/scripts
