@@ -4,21 +4,10 @@ mkdir -p /var/www/ && cd /var/www/
 
 set -e
 
-if [ -z "${AWS_ACCESS_KEY_ID}" ]; then
-  echo "aws access key not set" >&2
-  exit 1
-fi
+LATEST_TAG=$(curl -sL api.github.com/repos/jumpinchat/jumpinchat-homepage/releases/latest | jq .tag_name | sed 's/"//g')
+FILE_NAME=jic-homepage-${LATEST_TAG}.zip
+GH_URL=https://github.com/jumpinchat/jumpinchat-homepage/releases/download/${LATEST_TAG}/${FILE_NAME}
 
-if [ -z "${AWS_SECRET_ACCESS_KEY}" ]; then
-  echo "aws secret not set" >&2
-  exit 1
-fi
-
-if [ -z "${AWS_DEFAULT_REGION}" ]; then
-  echo "aws region not set" >&2
-  exit 1
-fi
-
-aws s3 cp s3://jic-artifacts/jic-homepage.tar.gz jic-homepage.tar.gz
-
-tar -xvzf jic-homepage.tar.gz
+curl -sL ${GH_URL} -o ./${FILE_NAME}
+unzip ${FILE_NAME}
+rm ${FILE_NAME}
